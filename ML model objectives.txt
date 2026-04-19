@@ -1,0 +1,5 @@
+## 🤖 Machine Learning Objective
+**Goal**: Build a predictive model to classify heart disease status based on clinical markers.
+* **Model**: Random Forest Classifier
+* **Accuracy**: [Write your accuracy here, e.g., 85%]
+* **Key Discovery**: The model identified **Max Heart Rate Achievement** and **ST Depression** as the top two most influential features in predicting a cardiac event.
