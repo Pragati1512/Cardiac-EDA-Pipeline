@@ -176,4 +176,97 @@ plt.xlabel("Gender"); plt.ylabel("Total Count")
 plt.grid(axis='y', linestyle='--', alpha=0.6)
 plt.show()
 
-# ... [Continue with your other plots 3-14 as previously written] ...
+# 3. Chest Pain Symptoms vs Health
+plt.figure()
+sns.countplot(data=df_viz, x='Chest_Pain_Type', hue='Heart_Condition', palette='magma')
+plt.title("Chest Pain Category vs Heart Condition", fontsize=14)
+plt.xlabel("Symptom Type"); plt.ylabel("Patient Count")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 4. Cholesterol Levels Boxplot
+plt.figure()
+sns.boxplot(data=df_viz, x='Heart_Condition', y='Cholesterol', palette='Set2')
+plt.title("Cholesterol Levels in Healthy vs. Diseased Patients", fontsize=14)
+plt.xlabel("Heart Status"); plt.ylabel("Cholesterol (mg/dl)")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+# 5. Max Heart Rate Achievement Density
+plt.figure()
+sns.kdeplot(data=df_viz, x='Max_Heart_Rate', hue='Heart_Condition', fill=True, alpha=0.5)
+plt.title("Cardiovascular Capacity (Max Heart Rate)", fontsize=14)
+plt.xlabel("Beats Per Minute (BPM)"); plt.ylabel("Density")
+plt.grid(linestyle=':', alpha=0.5)
+plt.show()
+
+# 6. ST Depression Variations
+plt.figure()
+sns.violinplot(data=df_viz, x='Heart_Condition', y='ST_Depression', palette='muted', split=True)
+plt.title("Variations in ST Depression (Ischemia Marker)", fontsize=14)
+plt.xlabel("Cardiac Health Status"); plt.ylabel("ST Depression Value")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 7. Correlation Heatmap
+plt.figure(figsize=(12, 10))
+sns.heatmap(df.corr(), annot=True, fmt=".2f", cmap='RdYlGn', cbar=True)
+plt.title("Clinical Feature Correlation Matrix", fontsize=14)
+plt.xlabel("Medical Attributes"); plt.ylabel("Medical Attributes")
+plt.show()
+
+# 8. Age vs. Peak Heart Rate Scatterplot
+plt.figure()
+sns.scatterplot(data=df_viz, x='Age', y='Max_Heart_Rate', hue='Heart_Condition', alpha=0.7, palette='husl')
+plt.title("Relationship Between Age and Peak Heart Rate", fontsize=14)
+plt.xlabel("Patient Age (Years)"); plt.ylabel("Max Heart Rate (BPM)")
+plt.grid(linestyle='--', alpha=0.5)
+plt.show()
+
+# 9. Exercise Induced Angina Probability Map
+plt.figure()
+risk_map = pd.crosstab(df_viz['Exercise_Angina'], df_viz['Heart_Condition'], normalize='index')
+sns.heatmap(risk_map, annot=True, cmap='Reds', cbar=False)
+plt.title("Risk Heatmap: Exercise Induced Angina Influence", fontsize=14)
+plt.xlabel("Heart Health Status"); plt.ylabel("Angina During Exercise (Yes/No)")
+plt.show()
+
+# 10. Major Vessel Blockage count
+plt.figure()
+sns.countplot(data=df_viz, x='Major_Vessels', hue='Heart_Condition', palette='viridis')
+plt.title("Blocked Vessels Impact on Disease Status", fontsize=14)
+plt.xlabel("Number of Major Vessels (0-3)"); plt.ylabel("Total Count")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 11. Resting BP Progression with Age
+plt.figure()
+sns.regplot(data=df, x='Age', y='Resting_BP', scatter_kws={'alpha':0.3}, line_kws={'color':'red'})
+plt.title("Trend: Resting Blood Pressure vs. Patient Age", fontsize=14)
+plt.xlabel("Age (Years)"); plt.ylabel("Resting BP (mm Hg)")
+plt.grid(linestyle='--', alpha=0.5)
+plt.show()
+
+
+# 12. Life Stage Group Prevalence
+plt.figure()
+sns.countplot(data=df_viz, x='Age_Group', hue='Heart_Condition', palette='spring')
+plt.title("Heart Disease Occurrence Across Age Groups", fontsize=14)
+plt.xlabel("Age Category"); plt.ylabel("Total Patients")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 13. Impact of Exercise ST Slope
+plt.figure()
+sns.countplot(data=df_viz, x='ST_Slope', hue='Heart_Condition', palette='Set1')
+plt.title("Peak Exercise ST Slope vs Cardiac Health", fontsize=14)
+plt.xlabel("ST Slope Type"); plt.ylabel("Patient Count")
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 14. Risk Indicators Interaction (Pairplot)
+g = sns.pairplot(df_viz[['Age', 'Max_Heart_Rate', 'ST_Depression', 'Heart_Condition']], hue='Heart_Condition', palette='husl')
+g.fig.suptitle("Inter-correlation of Core Risk Indicators", y=1.02, fontsize=14)
+for ax in g.axes.flatten():
+    ax.grid(linestyle=':', alpha=0.5)
+plt.show()
